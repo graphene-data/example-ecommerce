@@ -1,0 +1,8 @@
+{
+  "name": "graphene-ecommerce-example",
+  "dependencies": {
+  },
+  "graphene": {
+    "dialect": "bigquery"
+  }
+}
