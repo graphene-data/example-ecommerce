@@ -1,6 +1,7 @@
 {
   "name": "graphene-ecommerce-example",
   "dependencies": {
+    "playwright": "^1.56.0"
   },
   "graphene": {
     "dialect": "bigquery"
