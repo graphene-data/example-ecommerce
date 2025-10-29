@@ -1,7 +1,7 @@
 {
   "name": "graphene-ecommerce-example",
   "dependencies": {
-    "@graphenedata/cli": "^0.0.3"
+    "@graphenedata/cli": "^0.0.4"
   },
   "graphene": {
     "dialect": "bigquery",
