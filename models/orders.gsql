@@ -1,0 +1,31 @@
+-- It is extremely important that you consider the order status when doing analysis.
+table orders (
+  /* Base columns */
+
+  order_id INT64 primary_key,
+  user_id INT64,
+  status STRING, -- One of 'Processing', 'Shipped', 'Complete', 'Cancelled', 'Returned'
+  created_at TIMESTAMP,
+  returned_at TIMESTAMP,
+  shipped_at TIMESTAMP,
+  delivered_at TIMESTAMP,
+  num_of_item INT64,
+
+  /* Join relationships */
+
+  join_one users on users.id = user_id,
+  join_many order_items on order_id = order_items.order_id,
+
+  /* Scalar expressions */
+
+  status in ('Processing', 'Shipped', 'Complete') as is_rev_recognized,
+
+  /* Aggregate expressions */
+
+  count(case when is_rev_recognized then 1 else null end) as rev_rec_order_count,
+  safe_divide(order_items.revenue, rev_rec_order_count) as aov, -- average order value
+  avg(timestamp_diff(delivered_at, created_at, minute)) / 1440.0 as avg_order_cycle_time_days, -- time from order creation to delivery
+  count(distinct case when is_rev_recognized then user_id else null end) as customer_count  
+)
+
+

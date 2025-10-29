@@ -1,8 +1,10 @@
 {
   "name": "graphene-ecommerce-example",
   "dependencies": {
+    "@graphenedata/cli": "^0.0.3"
   },
   "graphene": {
-    "dialect": "bigquery"
+    "dialect": "bigquery",
+    "namespace": "bigquery-public-data.thelook_ecommerce"
   }
 }
